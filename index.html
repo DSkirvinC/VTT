@@ -32,7 +32,10 @@
 
       form.addEventListener('submit', function(e) {
         e.preventDefault();
-        if (input.value[0] == '/'){
+        if ((input.value).split(' ')[0] == '/roll'){
+            var read = (input.value).split(" ");
+            const result = Math.floor(Math.random() * read[2]) + 1;
+            input.value = input.value + ' = ' + result;
             socket.emit('command', input.value);
             input.value = '';
         }
@@ -43,14 +46,11 @@
       });
 
       socket.on('command', function(cmd){
-          var read = cmd.split(" ");
-          if (read[0] == "/roll") {
-              const result = Math.floor(Math.random() * read[2]) + 1;
-              var item = document.createElement('li');
-              item.textContent = cmd + ' = ' +  result;
-              messages.appendChild(item);
-              window.scrollTo(0, document.body.scrollHeight);
-          }
+        var item = document.createElement('li');
+        item.textContent = cmd;
+        messages.appendChild(item);
+        window.scrollTo(0, document.body.scrollHeight);
+
       });
 
       socket.on('chat message', function(msg) {
