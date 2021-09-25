@@ -34,10 +34,23 @@
         e.preventDefault();
         if ((input.value).split(' ')[0] == '/roll'){
             var read = (input.value).split(" ");
-            const result = Math.floor(Math.random() * read[2]) + 1;
-            input.value = input.value + ' = ' + result;
-            socket.emit('command', input.value);
+            var resultTracker = 0;
+            for (let index = 0; index < read[1]; index++) {
+              const result = Math.floor(Math.random() * read[2]) + 1;
+              resultTracker = resultTracker + result;
+              if(index != 0){
+                input.value = input.value + ' + ' + result;
+              }
+              else{
+                input.value = input.value + ' = ' + result;
+              }
+              
+            }
+            const storedInput = input.value;
+            const resultString = [resultTracker.toString(), storedInput];
+            socket.emit('command', resultString);
             input.value = '';
+            
         }
         else if (input.value) {
           socket.emit('chat message', input.value);
@@ -47,7 +60,8 @@
 
       socket.on('command', function(cmd){
         var item = document.createElement('li');
-        item.textContent = cmd;
+        item.textContent = cmd[0];
+        item.title = cmd[1];
         messages.appendChild(item);
         window.scrollTo(0, document.body.scrollHeight);
 
