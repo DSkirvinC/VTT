@@ -1,3 +1,5 @@
+const { fstat } = require('fs');
+
 const app = require('express')();
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
@@ -22,6 +24,13 @@ io.on('connection', (socket) => {
       io.emit('command', cmd);
     });
   });
+
+io.on('connection', (socket) => {
+  socket.on('user image', function (msg) {
+    console.log(msg);
+    socket.broadcast.emit('user image', msg);
+  });
+});
 
 http.listen(port, () => {
   console.log(`Socket.IO server running at http://localhost:${port}/`);

@@ -21,36 +21,24 @@
         gap: 10px;
         grid-auto-rows: minmax(100px, auto);
       }
-      #myImg {
-        grid-column: 1/2;
-        grid-row: 2/3;
-      }
 
     </style>
+    <script src='http://code.jquery.com/jquery-1.6.1.min.js'></script>
   </head>
   <body>
     <ul id="messages"></ul>
     <form id="form" action="">
       <input id="input" autocomplete="off" /><button>Send</button>
+      
     </form>
-    <input type='file' />
-    <img id="myImg" src="#">
+    <div id="images">
+      <div class="filebutton">Send Image<input type="file" id="imagefile" accept="image/*"></div>
+    </div>
 
     <script src="/socket.io/socket.io.js"></script>
 
     <script>
-      window.addEventListener('load', function() {
-      document.querySelector('input[type="file"]').addEventListener('change', function() {
-          if (this.files && this.files[0]) {
-              var img = document.querySelector('img');
-              img.onload = () => {
-                  URL.revokeObjectURL(img.src);  // no longer needed, free memory
-              }
-
-              img.src = URL.createObjectURL(this.files[0]); // set src to blob url
-          }
-      });
-    });
+      
 
       var socket = io();
 
@@ -101,6 +89,24 @@
         messages.appendChild(item);
         window.scrollTo(0, document.body.scrollHeight);
       });
+
+      socket.on('user image', image);
+      function image (base64Image) {
+        $('#images').append( '<img src="' + base64Image + '"/>');
+      }
+
+      $('#imagefile').bind('change', function(e){
+      var data = e.originalEvent.target.files[0];
+      var reader = new FileReader();
+      reader.onload = function(evt){
+        image( evt.target.result);
+        socket.emit('user image', evt.target.result);
+      };
+      reader.readAsDataURL(data);
+      
+    });
+
+
     </script>
   </body>
 </html>
