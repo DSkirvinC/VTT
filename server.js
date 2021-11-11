@@ -13,6 +13,11 @@ app.get('/game', (req, res) => {
   res.sendFile(__dirname + '/HTML/game.html');
 });
 
+app.get('/game.js', function (req, res) {
+  res.sendFile(__dirname + '/game.js');
+});
+
+
 io.on('connection', (socket) => {
   socket.on('chat message', msg => {
     io.emit('chat message', msg);
