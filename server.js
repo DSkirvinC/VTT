@@ -13,8 +13,8 @@ app.get('/game', (req, res) => {
   res.sendFile(__dirname + '/HTML/game.html');
 });
 
-app.get('/game.js', function (req, res) {
-  res.sendFile(__dirname + '/game.js');
+app.get('/messageHandler.js', function (req, res) {
+  res.sendFile(__dirname + '/messageHandler.js');
 });
 app.get('/imageHandler.js', function (req, res) {
   res.sendFile(__dirname + '/imageHandler.js');
