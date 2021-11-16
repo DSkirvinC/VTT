@@ -16,6 +16,9 @@ app.get('/game', (req, res) => {
 app.get('/game.js', function (req, res) {
   res.sendFile(__dirname + '/game.js');
 });
+app.get('/imageHandler.js', function (req, res) {
+  res.sendFile(__dirname + '/imageHandler.js');
+});
 
 
 io.on('connection', (socket) => {
