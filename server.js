@@ -20,6 +20,10 @@ app.get('/imageHandler.js', function (req, res) {
   res.sendFile(__dirname + '/imageHandler.js');
 });
 
+app.get('/gameStyle.css', function (req, res) {
+  res.sendFile(__dirname + '/gameStyle.css');
+});
+
 
 io.on('connection', (socket) => {
   socket.on('chat message', msg => {
