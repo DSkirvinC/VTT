@@ -10,7 +10,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/game', (req, res) => {
-  res.sendFile(__dirname + '/HTML/game.html');
+  res.sendFile(__dirname + '/HTML/gamePage.html');
 });
 
 app.get('/messageHandler.js', function (req, res) {
@@ -20,8 +20,8 @@ app.get('/imageHandler.js', function (req, res) {
   res.sendFile(__dirname + '/imageHandler.js');
 });
 
-app.get('/gameStyle.css', function (req, res) {
-  res.sendFile(__dirname + '/gameStyle.css');
+app.get('/gamePageStyle.css', function (req, res) {
+  res.sendFile(__dirname + '/gamePageStyle.css');
 });
 
 
