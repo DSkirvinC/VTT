@@ -24,6 +24,10 @@ app.get('/gamePageStyle.css', function (req, res) {
   res.sendFile(__dirname + '/gamePageStyle.css');
 });
 
+app.get('/tokenHandler.js', function (req, res) {
+  res.sendFile(__dirname + '/tokenHandler.js');
+});
+
 
 io.on('connection', (socket) => {
   socket.on('chat message', msg => {
@@ -43,6 +47,13 @@ io.on('connection', (socket) => {
     socket.broadcast.emit('user image', msg);
   });
 });
+
+io.on('connection', (socket) => {
+  socket.on('token creation', e => {
+    socket.broadcast.emit('token creation', e);
+  });
+});
+
 
 http.listen(port, () => {
   console.log(`Socket.IO server running at http://localhost:${port}/`);

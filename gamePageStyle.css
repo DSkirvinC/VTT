@@ -15,3 +15,19 @@ grid-template-columns: repeat(3, 1fr);
 gap: 10px;
 grid-auto-rows: minmax(100px, auto);
 }
+
+#mydiv {
+    position: absolute;
+    z-index: 9;
+    background-color: #f1f1f1;
+    border: 1px solid #d3d3d3;
+    text-align: center;
+  }
+  
+  #mydivheader {
+    padding: 10px;
+    cursor: move;
+    z-index: 10;
+    background-color: #f32121;
+    color: #fff;
+  }
