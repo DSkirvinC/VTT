@@ -33,26 +33,18 @@ io.on('connection', (socket) => {
   socket.on('chat message', msg => {
     io.emit('chat message', msg);
   });
-});
-
-io.on('connection', (socket) => {
-    socket.on('command', cmd => {
-      io.emit('command', cmd);
-    });
+  socket.on('command', cmd => {
+    io.emit('command', cmd);
   });
-
-io.on('connection', (socket) => {
   socket.on('user image', function (msg) {
     console.log(msg);
     socket.broadcast.emit('user image', msg);
   });
-});
-
-io.on('connection', (socket) => {
   socket.on('token creation', e => {
     socket.broadcast.emit('token creation', e);
   });
 });
+
 
 
 http.listen(port, () => {
