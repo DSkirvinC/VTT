@@ -9,8 +9,8 @@ var input = document.getElementById('input');
 
 form.addEventListener('submit', function(e) {
   e.preventDefault();
-  if ((input.value).split(' ')[0] == '/roll'){
-      var read = (input.value).split(" ");
+  var read = (input.value).split(" ");
+  if (read[0] == '/roll'){
       var resultTracker = 0;
       for (let index = 0; index < read[1]; index++) {
         const result = Math.floor(Math.random() * read[2]) + 1;
@@ -29,9 +29,9 @@ form.addEventListener('submit', function(e) {
       input.value = '';
       
   }
-  else if (input.value == '/token') {
+  else if (read[0] == '/token') {
     socket.emit('chat message', input.value);
-    socket.emit('token creation');
+    socket.emit('token creation', read[1]);
   }
   else if (input.value) {
     socket.emit('chat message', input.value);
@@ -55,17 +55,15 @@ socket.on('chat message', function(msg) {
   window.scrollTo(0, document.body.scrollHeight);
 });
 
-socket.on('token creation', e => {
-  createDiv();
-  e = dragElement(document.getElementById("mydiv"));
+socket.on('token creation', function(color) {
+  dragElement(createToken(color));
 })
 
-function createDiv() {
-  let div = document.createElement('div');
-  let divheader = document.createElement('div');
-  div.id='mydiv';
-  divheader.id="mydivheader"
-  div.appendChild(divheader);
+function createToken(color) {
+  var div = document.createElement('div');
+  div.id = 'mydiv';
   document.body.appendChild(div);
+  return div;
+  
 }
 
