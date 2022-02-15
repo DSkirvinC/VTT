@@ -5,10 +5,12 @@
 var socket = io();
 
 socket.on('user image', image);
+// Converts a given image to base64 format.
 function image (base64Image) {
   $('#images').append( '<img src="' + base64Image + '"/>');
 }
 
+// Takes encoded base64 format and reformats it back into the original image on every connected users screen.
 $('#imagefile').bind('change', function(e){
 var data = e.originalEvent.target.files[0];
 var reader = new FileReader();
