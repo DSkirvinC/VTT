@@ -1,3 +1,6 @@
+// Handles and interprets any and all commands or chat messages sent via the Chat Bar on the page
+// Makes sure all users see the same messages as one another and that messages get sent across the network
+
 var socket = io();
 
 var messages = document.getElementById('messages');

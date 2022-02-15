@@ -1,3 +1,7 @@
+// The Server for VTT
+// This server handles the networking for all of the other functions and files in this project
+// Additionally, this file 'serves' all the files necessary to execute this program to every connected client
+
 const { fstat } = require('fs');
 
 const app = require('express')();
