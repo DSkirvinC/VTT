@@ -1,3 +1,4 @@
+// Project by: Dawson Skirvin
 // This file is responsible for image display and transfer
 // Converts image to byte64 and distributes it to all users on the server
 
