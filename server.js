@@ -19,18 +19,18 @@ app.get('/game', (req, res) => {
 });
 
 app.get('/messageHandler.js', function (req, res) {
-  res.sendFile(__dirname + '/messageHandler.js'); // Provides every connected user with the messageHandler.js file.
+  res.sendFile(__dirname + '/Scripts/messageHandler.js'); // Provides every connected user with the messageHandler.js file.
 });
 app.get('/imageHandler.js', function (req, res) {
-  res.sendFile(__dirname + '/imageHandler.js'); // Provides every connected user with the imageHandler.js file.
+  res.sendFile(__dirname + '/Scripts/imageHandler.js'); // Provides every connected user with the imageHandler.js file.
 });
 
 app.get('/gamePageStyle.css', function (req, res) {
-  res.sendFile(__dirname + '/gamePageStyle.css'); // Provides every connected user with the gamePageStyle.css file.
+  res.sendFile(__dirname + '/Style/gamePageStyle.css'); // Provides every connected user with the gamePageStyle.css file.
 });
 
 app.get('/tokenHandler.js', function (req, res) {
-  res.sendFile(__dirname + '/tokenHandler.js'); // Provides every connected user with the tokenHandler.js file.
+  res.sendFile(__dirname + '/Scripts/tokenHandler.js'); // Provides every connected user with the tokenHandler.js file.
 });
 
 
